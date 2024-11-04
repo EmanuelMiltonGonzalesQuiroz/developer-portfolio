@@ -1,0 +1,13 @@
+ 
+  /* dark.css */
+  :root {
+    --bg-color: #1e1e1e;
+    --text-color: #ffffff;
+    --accent-color: #00f7ff; /* Azul eléctrico/neón */
+  }
+  
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+  

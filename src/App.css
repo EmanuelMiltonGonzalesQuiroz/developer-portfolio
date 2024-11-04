@@ -1,38 +1,186 @@
-.App {
-  text-align: center;
+:root {
+  --bg-color-light: #e0e0e0;
+  --bg-color-dark: #1e1e1e;
+  --text-color-light: #333;
+  --text-color-dark: #f0f0f0;
+  --accent-color: #1630BE; /* Azul eléctrico */
+  --secondary-accent-color: #0f2599; /* Azul más oscuro para hover */
+  --box-color-light: #f7f7f7;
+  --box-color-dark: #2a2a2a;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+[data-theme='light'] {
+  --bg-color: var(--bg-color-light);
+  --text-color: var(--text-color-light);
+  --box-color: var(--box-color-light);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+[data-theme='dark'] {
+  --bg-color: var(--bg-color-dark);
+  --text-color: var(--text-color-dark);
+  --box-color: var(--box-color-dark);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
   display: flex;
   flex-direction: column;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.header div {
+  display: flex;
+  gap: 10px;
+}
+
+.header button {
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+  font-size: 14px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.header button:hover {
+  background-color: var(--secondary-accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.header button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header button i {
+  font-size: 16px; /* Tamaño del icono */
+}
+
+.main-content {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .photo-section,
+  .description-section,
+  .characteristics-section,
+  .projects-gallery-section {
+    grid-column: 1 / -1;
+  }
+
+  .projects-gallery-section {
+    flex-direction: column;
+  }
+
+  .projects-section {
+    border-right: none;
+    border-bottom: 2px solid var(--accent-color);
+  }
+}
+
+.photo-section {
+  grid-row: 1 / span 1;
+  grid-column: 1 / 2;
+  background-color: var(--box-color);
+  border: 2px solid var(--accent-color);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s;
 }
 
-.App-link {
-  color: #61dafb;
+.photo-section:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.description-section,
+.characteristics-section,
+.projects-gallery-section {
+  transition: transform 0.3s;
+}
+
+.description-section:hover,
+.characteristics-section:hover,
+.projects-gallery-section:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.description-section {
+  grid-row: 1 / span 1;
+  grid-column: 2 / 4;
+  background-color: var(--box-color);
+  border: 2px solid var(--accent-color);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.characteristics-section {
+  grid-row: 2 / span 1;
+  grid-column: 1 / 2;
+  background-color: var(--box-color);
+  border: 2px solid var(--accent-color);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.projects-gallery-section {
+  display: flex;
+  grid-row: 2 / span 1;
+  grid-column: 2 / 4;
+  background-color: var(--box-color);
+  border: 2px solid var(--accent-color);
+  border-radius: 15px;
+  padding: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.projects-section {
+  flex: 1;
+  padding: 20px;
+  border-right: 2px solid var(--accent-color);
+}
+
+.carousel-section {
+  flex: 1;
+  padding: 20px;
 }
